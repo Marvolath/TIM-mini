@@ -14,6 +14,7 @@ using VRage.Game.ModAPI.Ingame.Utilities;
 using VRage.Game.ObjectBuilders.Definitions;
 using VRage.Game;
 using VRageMath;
+using VRage.Game.GUI.TextPanel;
 
 namespace IngameScript
 {
@@ -803,8 +804,8 @@ PhysicalGunObject/
                             egg = false;
                             blkPnl.SetValueFloat("FontSize", 0.2f);
                             blkPnl.WritePublicTitle("TIM the Enchanter", false);
-                            blkPnl.WritePublicText(panelFiller, false);
-                            blkPnl.ShowPublicTextOnScreen();
+                            blkPnl.WriteText(panelFiller, false);
+                            blkPnl.ContentType = ContentType.TEXT_AND_IMAGE;
                             name.Append("THE ENCHANTER ");
                         }
                         else if (attr.Length >= 3 & "QUOTAS".StartsWith(attr))
@@ -1066,7 +1067,7 @@ PhysicalGunObject/
                         panel2 = (slim != null) ? (slim.FatBlock as IMyTextPanel) : null;
                         if (panel2 != null && ("" + panel2.BlockDefinition == "" + panel.BlockDefinition & panel2.GetPublicTitle().ToUpper().Contains("QUOTAS")))
                         {
-                            spanLines[x] = panel2.GetPublicText().Split('\n');
+                            spanLines[x] = panel2.GetText().Split('\n');
                             height = Math.Max(height, spanLines[x].Length);
                         }
                     }
@@ -2153,8 +2154,8 @@ PhysicalGunObject/
                     panel.WritePublicTitle("Script Status", false);
                     if (panelSpan.ContainsKey(panel))
                         debugText.Add("Status panels cannot be spanned");
-                    panel.WritePublicText(sb.ToString(), false);
-                    panel.ShowPublicTextOnScreen();
+                    panel.WriteText(sb.ToString(), false);
+                    panel.ContentType = ContentType.TEXT_AND_IMAGE;
                 }
             }
 
@@ -2170,8 +2171,8 @@ PhysicalGunObject/
                     panel.WritePublicTitle("Script Debugging", false);
                     if (panelSpan.ContainsKey(panel))
                         debugText.Add("Debug panels cannot be spanned");
-                    panel.WritePublicText(String.Join("\n", debugText), false);
-                    panel.ShowPublicTextOnScreen();
+                    panel.WriteText(String.Join("\n", debugText), false);
+                    panel.ContentType = ContentType.TEXT_AND_IMAGE;
                 }
             }
             blockErrors.Clear();
@@ -2242,8 +2243,8 @@ PhysicalGunObject/
                                 text += ((y == 0) ? before : (((y + 1) == spany) ? after : ""));
                             spanpanel.SetValueFloat("FontSize", fontsize);
                             spanpanel.WritePublicTitle(title + " (" + (x + 1) + "," + (y + 1) + ")", false);
-                            spanpanel.WritePublicText(text, false);
-                            spanpanel.ShowPublicTextOnScreen();
+                            spanpanel.WriteText(text, false);
+                            spanpanel.ContentType = ContentType.TEXT_AND_IMAGE;
                         }
                         r += height;
                     }
@@ -2253,8 +2254,8 @@ PhysicalGunObject/
             {
                 panel.SetValueFloat("FontSize", fontsize);
                 panel.WritePublicTitle(title, false);
-                panel.WritePublicText(before + sf.ToString(width) + after, false);
-                panel.ShowPublicTextOnScreen();
+                panel.WriteText(before + sf.ToString(width) + after, false);
+                panel.ContentType = ContentType.TEXT_AND_IMAGE;
             }
         } // WriteTableToPanel()
 
